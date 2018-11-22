@@ -6,6 +6,7 @@ import (
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
 	"net/http"
+	"os"
 	"strings"
 )
 
@@ -21,10 +22,10 @@ func Handler(request events.CloudWatchEvent) (error) {
 
 	msg := fmt.Sprintf("Code Pipeline error detected:\n" +
 		"Pipeline: %v\n" +
-		"Stage: %v'n" +
+		"Stage: %v\n" +
 		"Action: %v",v.Pipeline,v.Stage,v.Action)
 
-	resp, err := http.Post("%v/api/alert/%v","application/text",strings.NewReader(msg))
+	resp, err := http.Post(fmt.Sprintf("%v/api/alert/%v",os.Getenv("HAL"),os.Getenv("GROUP")),"application/text",strings.NewReader(msg))
 	if err != nil {
 		return err
 	}
