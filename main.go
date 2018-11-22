@@ -11,7 +11,11 @@ import (
 // is processed, it returns an Amazon API Gateway response object to AWS Lambda
 func Handler(request events.CloudWatchEvent) (error) {
 
-	log.Println(request.Detail)
+	resp,err := request.Detail.MarshalJSON()
+	if err != nil {
+		return err
+	}
+	log.Println(string(resp))
 	return nil
 
 }
