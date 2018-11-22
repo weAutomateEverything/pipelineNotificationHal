@@ -24,6 +24,11 @@ Resources:
     Properties:
       Handler: main
       Runtime: go1.x
+      Environment:
+        Variables:
+          HAL: http://hal-130451825.eu-west-1.elb.amazonaws.com
+          GROUP: 1083240170
+
       Role:
         Fn::ImportValue:
           !Join ['-', [!Ref 'ProjectId', !Ref 'AWS::Region', 'LambdaTrustRole']]
