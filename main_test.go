@@ -8,19 +8,11 @@ import (
 
 func TestHandler(t *testing.T) {
 
-	request := events.APIGatewayProxyRequest{}
-	expectedResponse := events.APIGatewayProxyResponse{
-		StatusCode: 200,
-		Headers: map[string]string{
-			"Content-Type": "text/html",
-		},
-		Body: "Congratulations",
-	}
+	request := events.CloudWatchEvent{}
 
-	response, err := Handler(request)
+	 err := Handler(request)
 
-	assert.Equal(t, response.Headers, expectedResponse.Headers)
-	assert.Contains(t, response.Body, expectedResponse.Body)
-	assert.Equal(t, err, nil)
+	 assert.Nil(t,err)
+
 
 }
