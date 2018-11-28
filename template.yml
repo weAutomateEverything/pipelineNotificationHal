@@ -26,7 +26,7 @@ Resources:
       Runtime: go1.x
       Environment:
         Variables:
-          HAL: http://hal-130451825.eu-west-1.elb.amazonaws.com
+          HAL: http://hal-ecs-chat-1460459065.eu-west-1.elb.amazonaws.com
           GROUP: 1083240170
 
       Role:
