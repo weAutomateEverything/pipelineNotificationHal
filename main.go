@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
+	"github.com/kyokomi/emoji"
 	"net/http"
 	"os"
 	"strings"
@@ -15,17 +16,23 @@ import (
 func Handler(request events.CloudWatchEvent) (error) {
 
 	v := event{}
-	err := json.Unmarshal(request.Detail,&v)
+	err := json.Unmarshal(request.Detail, &v)
 	if err != nil {
 		return err
 	}
 
-	msg := fmt.Sprintf("Code Pipeline error detected:\n" +
-		"Pipeline: %v\n" +
-		"Stage: %v\n" +
-		"Action: %v",v.Pipeline,v.Stage,v.Action)
+	e := ":white_check_mark:"
+	if v.State == "FAILED" {
+		e = ":x:"
+	}
 
-	resp, err := http.Post(fmt.Sprintf("%v/api/alert/%v",os.Getenv("HAL"),os.Getenv("GROUP")),"application/text",strings.NewReader(msg))
+	msg := emoji.Sprintf("%v Code Pipeline Event:\n"+
+		"Event: %v\n"+
+		"Pipeline: %v\n"+
+		"Stage: %v\n"+
+		"Action: %v", e, v.State, v.Pipeline, v.Stage, v.Action)
+
+	resp, err := http.Post(fmt.Sprintf("%v/api/alert/%v", os.Getenv("HAL"), os.Getenv("GROUP")), "application/text", strings.NewReader(msg))
 	if err != nil {
 		return err
 	}
@@ -40,6 +47,7 @@ func main() {
 
 type event struct {
 	Pipeline string `json:"pipeline"`
-	Stage string `json:"stage"`
-	Action string `json:"action"`
+	Stage    string `json:"stage"`
+	Action   string `json:"action"`
+	State    string `json:"state"`
 }
