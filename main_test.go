@@ -20,10 +20,7 @@ func TestHandler(t *testing.T) {
 			t.Fatal(err)
 		}
 		s := string(msg)
-		assert.Equal(t,"Code Pipeline error detected:\n" +
-			"Pipeline: pipelinenotific-Pipeline\n" +
-			"Stage: Build\n" +
-			"Action: PackageExport",s)
+		assert.Equal(t,"❌  Code Pipeline Event:\nEvent: FAILED\nPipeline: pipelinenotific-Pipeline\nStage: Build\nAction: PackageExport",s)
 
 	})
 	go func() {
