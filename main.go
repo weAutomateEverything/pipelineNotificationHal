@@ -28,9 +28,7 @@ func Handler(request events.CloudWatchEvent) (error) {
 
 	msg := emoji.Sprintf("%v Code Pipeline Event:\n"+
 		"Event: %v\n"+
-		"Pipeline: %v\n"+
-		"Stage: %v\n"+
-		"Action: %v", e, v.State, v.Pipeline, v.Stage, v.Action)
+		"Pipeline: %v\n",e, v.State, v.Pipeline)
 
 	resp, err := http.Post(fmt.Sprintf("%v/api/alert/%v", os.Getenv("HAL"), os.Getenv("GROUP")), "application/text", strings.NewReader(msg))
 	if err != nil {
