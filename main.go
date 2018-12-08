@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
 	"github.com/kyokomi/emoji"
@@ -39,7 +38,7 @@ func Handler(request events.CloudWatchEvent) (error) {
 		"Event: %v\n"+
 		"Pipeline: %v\n",e, v.State, v.Pipeline)
 
-	resp, err := http.Post(fmt.Sprintf("%v/api/alert/%v", os.Getenv("HAL"), os.Getenv("GROUP")), "application/text", strings.NewReader(msg))
+	resp, err := http.Post(os.Getenv("HAL"), "application/text", strings.NewReader(msg))
 	if err != nil {
 		return err
 	}
