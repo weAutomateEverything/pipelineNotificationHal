@@ -22,8 +22,17 @@ func Handler(request events.CloudWatchEvent) (error) {
 	}
 
 	e := ":white_check_mark:"
-	if v.State == "FAILED" {
+	switch v.State {
+	case "FAILED":
 		e = ":x:"
+	case "SUCCEEDED":
+		e = ":checkered_flag:"
+		
+		
+	
+	}
+	if v.State == "FAILED" {
+		
 	}
 
 	msg := emoji.Sprintf("%v Code Pipeline Event:\n"+
