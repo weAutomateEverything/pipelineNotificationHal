@@ -16,7 +16,7 @@ Resources:
       Runtime: go1.x
       Environment:
         Variables:
-          HAL: https://api.carddevops.co.za/telegram-text/1083240170
+          HAL: https://api.carddevops.co.za/alerting/alert/text/1083240170
 
       Role:
         Fn::ImportValue:
