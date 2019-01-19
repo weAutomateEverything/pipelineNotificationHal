@@ -1,5 +1,5 @@
 variable "name" {
-  default = "serverless-alerting"
+  default = "pipeline-notification"
 }
 
 resource "aws_iam_role" "pipeline" {
