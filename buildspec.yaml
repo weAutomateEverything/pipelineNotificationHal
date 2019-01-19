@@ -1,0 +1,15 @@
+version: 0.2
+env:
+  variables:
+    GO111MODULE: "on"
+phases:
+  pre_build:
+    commands:
+
+  build:
+    commands:
+      - GOOS=linux go build -ldflags="-s -w" -o bin/pipeline main.go
+      - sls deploy --verbose
+
+  post_build:
+    commands:
