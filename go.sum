@@ -1,0 +1,4 @@
+github.com/aws/aws-lambda-go v1.8.1 h1:nHBpP6XC30bwF6qWKrw/BrK2A8i4GKmSZzajTBIJS4A=
+github.com/aws/aws-lambda-go v1.8.1/go.mod h1:zUsUQhAUjYzR8AuduJPCfhBuKWUaDbQiPOG+ouzmE1A=
+github.com/kyokomi/emoji v2.0.0+incompatible h1:ftqSD1PzBkSr3I4/0ZZ7Cluaxv6sNi8CkhYE56Son6A=
+github.com/kyokomi/emoji v2.0.0+incompatible/go.mod h1:mZ6aGCD7yk8j6QY6KICwnZ2pxoszVseX1DNoGtU2tBA=

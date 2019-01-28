@@ -27,5 +27,7 @@ functions:
           event:
             source:
               - "aws.codepipeline"
+            detail-type:
+              - "CodePipeline Pipeline Execution State Change"
     environment:
       HAL: https://${env:Domain}/alerting/alert/text/${env:Group}
